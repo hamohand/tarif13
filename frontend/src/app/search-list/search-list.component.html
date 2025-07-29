@@ -1,0 +1,34 @@
+<p>search-list works!</p>
+
+<h3>- Avant :</h3>
+<table class="couleurFond" border="0" width="70%">
+    <tbody>
+    <tr *ngFor="let e of lesarticles">
+        <td>
+            <!-- contenu : -->
+            {{e.articleTitle}} : {{e.code}}
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="search-form">
+       <button
+            (click)="search()"
+            class="search-button"
+    >
+        {{ isLoading ? 'Recherche en cours...' : 'Rechercher' }}
+    </button>
+</div>
+
+<h3>- Après :</h3>
+<table class="couleurFond" border="0" width="70%">
+    <tbody>
+    <tr *ngFor="let e of lesarticles">
+        <td>
+            <!-- contenu : -->
+            {{e.articleTitle}} : {{e.code}}
+        </td>
+    </tr>
+    </tbody>
+</table>

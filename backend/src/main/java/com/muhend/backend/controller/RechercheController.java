@@ -24,7 +24,8 @@ import java.util.stream.Collectors;
 // Spring ne verra que le chemin "/recherche".
 // Modifier @RequestMapping("/api/recherche")
 // ***********************************************************************************
-@RequestMapping("/recherche")
+@RequestMapping("/api/recherche")
+//@RequestMapping("/recherche")
 public class RechercheController {
     private final ChapitreService chapitreService;
     //    private final OpenAiServiceOld openAiServiceOld;
@@ -41,7 +42,7 @@ public class RechercheController {
         this.openAiService = openAiService;
       //  this.openAiServiceOllama = openAiServiceOllama;
     }
-    //Listes des codes trouvés par l'IA
+    //Listes des codes trouvés par l'IA // A transformer en variables locales
     List<String> codesChapitres = new java.util.ArrayList<>();
     List<String> codesPosition4 = new java.util.ArrayList<>();
     List<String> codesPosition6 = new java.util.ArrayList<>();
@@ -93,7 +94,8 @@ public class RechercheController {
     )
     public String rechercheChapitresAvecAi(@RequestParam String termeRecherche) {
         try {
-            codesChapitres = null;
+            //List<String> codesChapitres = new java.util.ArrayList<>(); //.......................
+            codesChapitres= null; // réinitialisation
             // Étape 1 : Construire la liste de tous les chapitres à rechercher
             StringBuilder chapitresRag = creationRagChapitre();
             // Étape 2 : Appeler l'IA pour obtenir la réponse brute
@@ -153,6 +155,7 @@ public class RechercheController {
             methods = {RequestMethod.GET, RequestMethod.POST}
     )
     public String recherchePosition4AvecAi(@RequestParam String termeRecherche) {
+        //List<String> codesPosition4 = new java.util.ArrayList<>(); //.......................
         codesPosition4 = null; // Réinitialisation
         try {
             // lancer d'abord 'Chapitres'
@@ -223,7 +226,7 @@ public class RechercheController {
     }
 
     // *******************************************************************************************
-    // --------------------------------- POSITION 6Dz ---------------------------------------------
+    // --------------------------------- POSITION 6 Dz ---------------------------------------------
     // *******************************************************************************************
     @GetMapping(path = "/positions6", produces = "text/plain")
     @CrossOrigin(
@@ -231,6 +234,7 @@ public class RechercheController {
             methods = {RequestMethod.GET, RequestMethod.POST}
     )
     public String recherchePosition6AvecAi(@RequestParam String termeRecherche) {
+        // List<String> codesPosition6 = new java.util.ArrayList<>(); //.......................
         codesPosition6 = null; // réinitialisation
         try {
             // lancer d'abord 'Position4'
@@ -266,9 +270,8 @@ public class RechercheController {
             //formattedResponse.append(reponsePosition4).append("\n\n"); // Commencer par le résultat de 'Position4'
             if (!codesPosition6.isEmpty()) {
                 //System.out.println("** POSITION(S)-6 **\n\n");
-                formattedResponse.append(reponsePosition4).append("\n\n"); // Commencer par  le résultat de 'Position4'
-//                formattedResponse.append("POSITION(S)-6 :\n\n"); // ensuite le résultat de 'Position6' ensuite 'Position4'
-                formattedResponse.append("** POSITION(S)-6 **\n\n"); // ensuite le résultat de 'Position6' ensuite 'Position4'
+      //          formattedResponse.append(reponsePosition4).append("\n\n"); // Commencer par  le résultat de 'Position4' //..................
+      //          formattedResponse.append("** POSITION(S)-6 **\n\n"); // ensuite le résultat de 'Position6' ensuite 'Position4' //..................
                 for (String code : codesPosition6) {
                     //System.out.println(" - Code avant appel :" + code);
                     Position6Dz position6 = position6DzService.getPositionByCode(code.trim()).get();
@@ -277,7 +280,7 @@ public class RechercheController {
                     formattedResponse
                         .append("- Code = ").append(code)
                         .append("\n")
-                        .append("Description : ").append(description)
+     //                   .append("Description : ").append(description) //...............
                         .append("\n\n");
                 }
 

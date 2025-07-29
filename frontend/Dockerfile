@@ -6,6 +6,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
+
 # Stage 2: Serve the application with Nginx
 FROM nginx:alpine
 # Utiliser l'image officielle de NGINX comme base
