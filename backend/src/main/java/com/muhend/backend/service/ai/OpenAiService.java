@@ -27,13 +27,13 @@ public class OpenAiService {
     private final String openaiApiUrl = "https://api.openai.com/v1/chat/completions"; // URL corrigée
     //private static final String OPENAI_API_URL = "http://localhost:11434/completions\n"; // URL
 
-    private final String openaiModel = "gpt-4o";
+    private final String openaiModel = "gpt-4.1";
     //   private final String OPENAI_MODEL = "llama3";
     private final int maxTokens = 500;
     private final float temperature = 0.1F;
 
     private final String userMessageSystem = """
-             Vous êtes un assistant spécialisé dans le domaine de la recherche des codes douaniers du commerce international.
+             Vous êtes un assistant multilingue, vous êtes spécialisé dans le domaine de la recherche des codes douaniers du commerce international.
              Votre tâche est d'extraire à partir de la liste générale des codes, tous les codes et leurs descriptions susceptibles de décrire un produit donné.
              Veuillez répondre uniquement au format JSON avec la clé `code`. Voir exemples de réponses de l'assistant ci-dessous :
              Exemple 1 :

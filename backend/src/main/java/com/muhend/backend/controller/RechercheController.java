@@ -272,7 +272,7 @@ public class RechercheController {
                 //System.out.println("** POSITION(S)-6 **\n\n");
       //          formattedResponse.append(reponsePosition4).append("\n\n"); // Commencer par  le résultat de 'Position4' //..................
       //          formattedResponse.append("** POSITION(S)-6 **\n\n"); // ensuite le résultat de 'Position6' ensuite 'Position4' //..................
-                for (String code : codesPosition6) {
+/*                for (String code : codesPosition6) {
                     //System.out.println(" - Code avant appel :" + code);
                     Position6Dz position6 = position6DzService.getPositionByCode(code.trim()).get();
                     String description = position6.getDescription();
@@ -283,6 +283,8 @@ public class RechercheController {
      //                   .append("Description : ").append(description) //...............
                         .append("\n\n");
                 }
+*/
+                formattedResponse.append(conversionReponseIaToList(cleanedIaResponse).toString().replace("[", "").replace("]", "").replace("\"", ""));
 
                 return formattedResponse.toString();
             } else {
@@ -313,11 +315,13 @@ public class RechercheController {
     }
 
     // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    // OUTILS  Réponse IA :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    // ::::::::::::::::::::::::::::::::: OUTILS  Réponse IA :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
     //Création d'un tableau Java à partir de la réponse de l'IA
     public List<String> conversionReponseIaToList(String cleanedJson){
         List<String> listeCodes = extractCodesFromJson(cleanedJson);
         System.out.println("listeCodes 'conversionReponseIaToList' : "+ listeCodes);
+        System.out.println("listeCodes toString' : "+ listeCodes.toString());
         return listeCodes;
     }
     //

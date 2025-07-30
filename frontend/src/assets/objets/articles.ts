@@ -1,11 +1,11 @@
 export class Article {
 
-    articleTitle: string;
+    designation: string;
     code: string;
     description: string;
 
     constructor(code: string, titre: string, auteur: string){
-        this.articleTitle = titre;
+        this.designation = titre;
         this.code = code;
         this.description = auteur;
     }
@@ -15,17 +15,17 @@ export class Article {
 export const articles : Article[] =
     [
         {
-            articleTitle : "sel",
+            designation : "sel",
             code : "1",
             description : "Jonathan Littell",
         },
         {
-            articleTitle : "pommes",
+            designation : "pommes",
             code : "2",
             description : "Amélie Nothomb",
         },
         {
-            articleTitle : "voitures diesel",
+            designation : "voitures diesel",
             code : "3",
             description : "Nothomb",
         }
